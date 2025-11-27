@@ -1,29 +1,29 @@
-# ===========================================
-# 💻 DAA PRACTICAL PROGRAMS - PYTHON
-# Author : Reva Rao
-# ===========================================
+# ===========================================================
+#              DAA LAB – IMPORTANT PYTHON PROGRAMS
+#                  Created by: Reva Rao 🧡
+# ===========================================================
 
 
-# -------------------------------------------
-# 1️⃣ Linear Search
-# -------------------------------------------
+# -----------------------------------------------------------
+# 1. LINEAR SEARCH
+# -----------------------------------------------------------
 def linear_search(arr, x):
     for i in range(len(arr)):
         if arr[i] == x:
             return i
     return -1
 
+print("\n--- Linear Search ---")
 arr = [5, 2, 8, 9, 3]
 x = 9
-res = linear_search(arr, x)
-print("\nLinear Search Output:")
-print("Found at index:", res if res != -1 else "Not Found")
+result = linear_search(arr, x)
+print("Found at index:", result if result != -1 else "Not Found")
 
 
 
-# -------------------------------------------
-# 2️⃣ Binary Search (Sorted Array)
-# -------------------------------------------
+# -----------------------------------------------------------
+# 2. BINARY SEARCH
+# -----------------------------------------------------------
 def binary_search(arr, x):
     low = 0
     high = len(arr) - 1
@@ -38,20 +38,20 @@ def binary_search(arr, x):
             low = mid + 1
     return -1
 
+print("\n--- Binary Search ---")
 arr = [2, 3, 5, 7, 11, 13]
-x = 7
-res = binary_search(arr, x)
-print("\nBinary Search Output:")
+res = binary_search(arr, 7)
 print("Found at index:", res if res != -1 else "Not Found")
 
 
 
-# -------------------------------------------
-# 3️⃣ Merge Sort
-# -------------------------------------------
+# -----------------------------------------------------------
+# 3. MERGE SORT
+# -----------------------------------------------------------
 def merge_sort(arr):
     if len(arr) <= 1:
         return arr
+
     mid = len(arr)//2
     left = merge_sort(arr[:mid])
     right = merge_sort(arr[mid:])
@@ -71,14 +71,14 @@ def merge(left, right):
     result.extend(right[j:])
     return result
 
-print("\nMerge Sort Output:")
+print("\n--- Merge Sort ---")
 print(merge_sort([5, 3, 8, 4, 2]))
 
 
 
-# -------------------------------------------
-# 4️⃣ Quick Sort
-# -------------------------------------------
+# -----------------------------------------------------------
+# 4. QUICK SORT
+# -----------------------------------------------------------
 def quick_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -92,14 +92,16 @@ def quick_sort(arr):
             right.append(x)
     return quick_sort(left) + [p] + quick_sort(right)
 
-print("\nQuick Sort Output:")
+print("\n--- Quick Sort ---")
 print(quick_sort([8, 3, 5, 1, 6]))
 
 
 
-# -------------------------------------------
-# 5️⃣ Strassen Matrix Multiplication (2x2)
-# -------------------------------------------
+# -----------------------------------------------------------
+# 5. STRASSEN MATRIX MULTIPLICATION (2x2)
+# -----------------------------------------------------------
+print("\n--- Strassen Matrix Multiplication ---")
+
 A = [[1, 2],
      [3, 4]]
 B = [[5, 6],
@@ -116,35 +118,42 @@ p7 = (A[0][0]-A[1][0])*(B[0][0]+B[0][1])
 C = [[p5+p4-p2+p6, p1+p2],
      [p3+p4, p5+p1-p3-p7]]
 
-print("\nStrassen Matrix Multiplication Output:")
 print(C)
 
 
 
-# -------------------------------------------
-# 6️⃣ 0/1 Knapsack using Greedy
-# -------------------------------------------
+# -----------------------------------------------------------
+# 6. GREEDY KNAPSACK
+# -----------------------------------------------------------
+print("\n--- Greedy Knapsack ---")
+
 items = [(60, 10), (100, 20), (120, 30)]
 capacity = 50
-items.sort(reverse=True)  # sort by profit
 
+items.sort(reverse=True)
 profit = 0
+
 for p, w in items:
     if capacity >= w:
         profit += p
         capacity -= w
 
-print("\nGreedy Knapsack Output:")
 print("Max Profit:", profit)
 
 
 
-# -------------------------------------------
-# 7️⃣ Graph Coloring using Greedy
-# -------------------------------------------
-graph = {0:[1,2], 1:[0,2], 2:[0,1]}
-colors = {}
+# -----------------------------------------------------------
+# 7. GREEDY GRAPH COLORING
+# -----------------------------------------------------------
+print("\n--- Graph Coloring ---")
 
+graph = {
+  0: [1, 2],
+  1: [0, 2],
+  2: [0, 1]
+}
+
+colors = {}
 for node in graph:
     used = []
     for n in graph[node]:
@@ -155,29 +164,26 @@ for node in graph:
             colors[node] = c
             break
 
-print("\nGraph Coloring Output:")
 print(colors)
 
 
 
-# -------------------------------------------
-# 8️⃣ 8 Queens (Backtracking)
-# -------------------------------------------
+# -----------------------------------------------------------
+# 8. 8-QUEENS (Backtracking)
+# -----------------------------------------------------------
+print("\n--- 8 Queens Solution ---")
+
 board = [[0]*8 for _ in range(8)]
 
 def safe(r, c):
     for i in range(r):
-        if board[i][c] == 1:
-            return False
-        if c-(r-i) >= 0 and board[i][c-(r-i)] == 1:
-            return False
-        if c+(r-i) < 8 and board[i][c+(r-i)] == 1:
-            return False
+        if board[i][c] == 1: return False
+        if c-(r-i) >= 0 and board[i][c-(r-i)] == 1: return False
+        if c+(r-i) < 8 and board[i][c+(r-i)] == 1: return False
     return True
 
 def solve(r):
     if r == 8:
-        print("\n8 Queens Output:")
         for row in board:
             print(row)
         return True
@@ -192,9 +198,11 @@ solve(0)
 
 
 
-# -------------------------------------------
-# 9️⃣ Traveling Salesman Problem (TSP)
-# -------------------------------------------
+# -----------------------------------------------------------
+# 9. TSP (Simple Version)
+# -----------------------------------------------------------
+print("\n--- TSP (Small Example) ---")
+
 INF = 999
 cost = [
     [0,10,15,20],
@@ -218,16 +226,16 @@ def tsp(curr, count, total):
             vis[nxt] = 0
 
 vis[0] = 1
-tsp(0,1,0)
-
-print("\nTSP Output:")
+tsp(0, 1, 0)
 print("Shortest Path:", best)
 
 
 
-# -------------------------------------------
-# 🔟 Valid Parentheses using Stack
-# -------------------------------------------
+# -----------------------------------------------------------
+# 10. VALID PARENTHESES
+# -----------------------------------------------------------
+print("\n--- Valid Parentheses ---")
+
 s = "(())()"
 stack = []
 valid = True
@@ -241,8 +249,8 @@ for ch in s:
             break
         stack.pop()
 
-print("\nValid Parentheses Output:")
 print("Valid" if valid and not stack else "Invalid")
+
 
 
 
